@@ -1,6 +1,6 @@
 ---
 - name: Edit grub
-  hosts: node1.example.com
+  hosts: nodes
 
   tasks:
 

@@ -1,6 +1,6 @@
 ---
 -  name: httpd uninstall
-   hosts: node1.example.com
+   hosts: nodes
 
    vars:
      dest_file: /var/www/html/index.html

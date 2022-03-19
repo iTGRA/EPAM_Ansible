@@ -1,0 +1,20 @@
+---
+-  name: httpd install
+   hosts: node1.example.com
+   
+   vars:
+     source_file: ./index.html
+     dest_dir: /var/www/html
+ 
+   tasks:
+    - name: install httpd
+      yum: name=httpd state=latest
+
+    - name: Copy Index to server
+      copy: src={{ source_file }} dest={{ dest_dir }} mode=0555
+
+    - name: start httpd
+      service: name=httpd state=started enabled=yes
+
+    - name: configure firewalld
+      firewalld: service=http permanent=true state=enabled immediate=true

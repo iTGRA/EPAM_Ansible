@@ -1,0 +1,19 @@
+---
+- name: Edit grub
+  hosts: node1.example.com
+
+  tasks:
+
+  - name: added parameters ifnames to /etc/default/grub
+    lineinfile: state=present dest=/etc/default/grub backrefs=yes regexp='^(GRUB_CMDLINE_LINUX=(?!.* net\.ifnames=0)\"[^\"]+)(\".*)' line='\1  net.ifnames=0\2'
+
+  - name: added parameters biosdevname to /etc/default/grub
+    lineinfile:
+      state: present
+      dest: /etc/default/grub
+      backrefs: yes
+      regexp: '^(GRUB_CMDLINE_LINUX=(?!.* biosdevname=0)\"[^\"]+)(\".*)'
+      line: '\1 biosdevname=0\2'
+
+  - name: reload grub
+    command: grub2-mkconfig 

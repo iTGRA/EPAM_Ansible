@@ -1,0 +1,16 @@
+---
+-  name: httpd uninstall
+   hosts: node1.example.com
+
+   vars:
+     dest_file: /var/www/html/index.html
+
+   tasks:
+    - name: uninstall httpd
+      yum: name=httpd state=absent
+
+    - name: delete Index from server
+      file: path={{ dest_file }} state=absent
+
+    - name: configure firewalld
+      firewalld: service=http permanent=true state=disabled immediate=true

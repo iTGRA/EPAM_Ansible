@@ -1,2 +1,4 @@
 ---
 # handlers file for apache_deploy
+- name: Restart httpd
+  service: name=httpd state=restarted

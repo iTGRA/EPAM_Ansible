@@ -1,0 +1,7 @@
+---
+- name: Deploy Apache service
+  hosts: nodes
+
+  roles: 
+    - apache_deploy
+  

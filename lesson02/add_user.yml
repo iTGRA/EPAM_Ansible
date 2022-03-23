@@ -10,27 +10,23 @@
           31616432313834616632323562626336343038353262376433626462393732356435353262616162
           3930356565316433650a656164356161356165613537366664643730323935323063363132343061
           3139
-
   tasks:
  
   - name: create users 
     user: 
       name: "{{ item.name }}"
-      comment: "{{ item.comment }}"
+      comment: "{{ item.name }}@example.com"
       create_home: "{{ item.home }}"
       password: "{{ item.password | password_hash('sha512') }}"
       state: present
 
     loop:
     - name: "Alice"	
-      comment: "alice@example.com"
       home: true
       password: "{{ password }}"
     - name: "Bob"
-      comment: "bob@example.com"
       home: true
       password: "{{ password }}"
     - name: "Carol"
-      comment: "carol@example.com"
       home: true
       password: "{{ password }}"

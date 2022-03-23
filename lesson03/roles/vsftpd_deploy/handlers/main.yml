@@ -1,2 +1,11 @@
 ---
-# handlers file for vsftpd_deploy
+# handlers file for install ftp
+- name: reload firewalld
+  service:
+    name: firewalld
+    state: restarted
+
+- name: restart vsftpd
+  service:
+    name: vsftpd
+    state: restarted
